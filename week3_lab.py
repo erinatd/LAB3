@@ -47,9 +47,12 @@ print(f"\nThe codebook has {len(CODEBOOK)} entries.")
 # -- ANCHOR QUESTIONS ------------------------------------------------------
 # Q1. Why is a tuple ('A', '.-') safer here than a list ['A', '.-']?
 #     (Hint: what should NEVER change about a codebook entry?)
+# A1. Because it keeps the values in lists conjoined together
 # Q2. "for letter, pattern in CODEBOOK" unpacks each tuple into two names.
 #     How is that different from "for entry in CODEBOOK"?
+# A2. Because it stops allowing any letter or pattern from showing up after input 8
 # Q3. CODEBOOK[:8] is a slice. What would CODEBOOK[-3:] give you?
+# A3. It would give the letter and Pattern pairs for the last 3 values of the Alphabet
 
 
 # =============================================================================
@@ -77,7 +80,9 @@ encoded = []
 #       encoded.append(patterns[position])
 
 # (write your loop here)
-
+for character in word:
+    position=letters.index(character)
+    encoded.append(patterns[position])
 print(f"\nEncoding '{word}':")
 print(f"  result -> {encoded}")
 # Expected once complete: ['....', '.', '.-..', '.-..', '---']
@@ -93,7 +98,8 @@ print("=" * 52)
 # A list comprehension can filter while it builds. Worked example: collect
 # the patterns for all the VOWELS in one line.
 vowel_patterns = [pattern for (letter, pattern) in CODEBOOK if letter in 'AEIOU']
-print(f"\nVowel patterns (A,E,I,O,U): {vowel_patterns}")
+for pattern in CODEBOOK[:26]:
+    print(f"\nVowel patterns (A,E,I,O,U): {vowel_patterns}")
 
 # -- YOUR EXTENSION --------------------------------------------------------
 # Every lookup above scans the lists from the start until it finds a match.
